@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Go'zal",
+      "surname": "Karimjonova",
+      "email": "gozal@example.com",
+      "password": "gozal123"
+    },
+    {
+      "name": "gozal",
+      "surname": "karimova",
+      "email": "gozalkarimjonova4@gmail.com",
+      "password": "gozal123",
+      "id": "89-4G1E_TUo"
+    },
+    {
+      "name": "gozal",
+      "surname": "karimova",
+      "email": "gozalkarimjonova4@gmail.com",
+      "password": "gozal123",
+      "id": "cr-LoY0mpos"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

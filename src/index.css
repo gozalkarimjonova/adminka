@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-[#060917] text-slate-200 antialiased;
+  }
+}
+
+/* ============================================================
+   Auth pages — dekorativ effektlar
+   ============================================================ */
+
+@keyframes auth-blob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -30px, 0) scale(1.07);
+  }
+}
+
+@keyframes auth-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-blob {
+  animation: auth-blob 15s ease-in-out infinite;
+}
+
+.animate-blob-slow {
+  animation: auth-blob 22s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+.animate-rise {
+  animation: auth-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise-1 {
+  animation: auth-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.animate-rise-2 {
+  animation: auth-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+}
+
+.animate-rise-3 {
+  animation: auth-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+
+/* Ingichka katakli fon */
+.auth-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(148, 163, 184, 0.09) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.09) 1px, transparent 1px);
+  background-size: 58px 58px;
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-blob-slow,
+  .animate-rise,
+  .animate-rise-1,
+  .animate-rise-2,
+  .animate-rise-3 {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Form elementlari (Login va Register uchun umumiy)
+   ============================================================ */
+
+@layer components {
+  .field-label {
+    @apply mb-2 block text-[13px] font-semibold tracking-wide text-slate-300;
+  }
+
+  .field-wrap {
+    @apply relative;
+  }
+
+  .field-wrap:focus-within .field-icon {
+    @apply text-indigo-300;
+  }
+
+  .field-icon {
+    @apply pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors duration-200;
+  }
+
+  .field {
+    @apply block w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-[15px] text-white
+      outline-none transition duration-200 placeholder:text-slate-500
+      hover:border-white/20
+      focus:border-indigo-400/60 focus:bg-white/[0.07] focus:ring-4 focus:ring-indigo-500/15;
+  }
+
+  .field-pl {
+    @apply pl-11;
+  }
+
+  .field:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  /* Chrome autofill'ni qorong'i temaga moslash */
+  .field:-webkit-autofill,
+  .field:-webkit-autofill:hover,
+  .field:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.95) inset;
+    caret-color: #fff;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl
+      bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 px-5 py-3.5
+      text-[15px] font-bold text-white shadow-lg shadow-indigo-950/50
+      transition duration-200 hover:brightness-110 hover:shadow-xl hover:shadow-indigo-900/40
+      active:scale-[0.985] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400;
+  }
+
+  .btn-social {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03]
+      px-4 py-3 text-sm font-semibold text-slate-200 transition duration-200
+      hover:border-white/25 hover:bg-white/[0.08] hover:text-white
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400;
+  }
+
+  .checkbox {
+    @apply size-4 shrink-0 cursor-pointer appearance-none rounded-[5px] border border-white/25 bg-white/[0.06]
+      transition duration-150 hover:border-white/45
+      checked:border-indigo-400 checked:bg-indigo-500
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.72rem;
+  }
+
+  .checkbox:checked {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M3 8.6l3.2 3.2L13 4.9'/></svg>");
+  }
+
+  .auth-link {
+    @apply font-semibold text-indigo-300 transition-colors duration-200 hover:text-indigo-200;
+  }
+
+  .auth-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-indigo-400/25 bg-indigo-500/10
+      px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-indigo-300;
+  }
+}
